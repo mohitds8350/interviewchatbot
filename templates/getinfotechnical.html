@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Details</title>
+    <style>
+        .button {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            display: block;
+            font-size: 16px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        .h2 {
+            margin: 0 auto;
+            display: block;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Please Provide Your Details.</p>
+        <br>
+        <form action="/qna/technical" method="post">
+            <input type="text" name="name" placeholder="Enter Your Name" required>
+            <br><br>
+            <p>Job Role</p>
+            <select name="role" required>
+                <option value="Data Scientist">Data Scientist</option>
+                <option value="Data Engineer">Data Engineer</option>
+                <option value="Data Analyst">Data Analyst</option>
+            </select>            
+            <p>Years of Experience</p>
+            <select name="experience" required>
+                <option value="0-1">Fresher</option>
+                <option value="2-3">2-3 years</option>
+                <option value="4-5">4-5 years</option>
+                <option value="6-10">6-10 years</option>
+                <option value="10+">10+ years</option>
+                <option value="15+">15+ years</option>
+                <option value="20+">20+ years</option>
+            </select>
+            <br><br>
+            <input class="button" type="submit" value="Start">
+        </form>
+    </div>
+</body>
+</html>

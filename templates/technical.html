@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Technical Interview</title>
+    <style>
+        .quiz-container {
+            width: 50%;
+            margin: auto;
+            font-family: Arial, sans-serif;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-bottom: 15px;
+        }
+        .option {
+            display: block;
+            margin: 5px 0;
+        }
+        .option input {
+            margin-right: 10px;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            padding: 4px;
+            width: 200px;
+            background-color: #eeeeee;
+            border: none;
+            box-shadow: 1px 1px 2px #bbbbbb;
+            cursor: pointer;
+            }
+
+            .hiddenp{
+            background-color: #eeeeee;
+            padding: 4px;
+            margin: 0;
+            box-shadow: 1px 1px 2px #bbbbbb;
+            }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+            {% if mcq %}
+                <div class="question">{{mcq["question"]}}</div>
+                <div class="options">
+                    <form action="/qna/technical" method="post">
+                        <div class="option"><input type="radio" name="answer" value="A"> A) {{mcq["options"]["A"]}}</div>
+                        <div class="option"><input type="radio" name="answer" value="B"> B) {{mcq["options"]["B"]}}</div>
+                        <div class="option"><input type="radio" name="answer" value="C"> C) {{mcq["options"]["C"]}}</div>
+                        <div class="option"><input type="radio" name="answer" value="D"> D) {{mcq["options"]["D"]}}</div>
+                            <details>
+                                <summary class="hidden">Show Answer</summary>
+                                <p class="hiddenp">{{mcq["answer"]}}</p>
+                            </details>
+                        <input class="button" type="submit" value="Next">
+                    </form>
+            {%endif%}
+                </div>
+    </div>
+</body>
+</html>

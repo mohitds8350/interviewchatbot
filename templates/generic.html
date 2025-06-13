@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html class="html" lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Details</title>
     <style>
         .html {
@@ -55,16 +54,15 @@
 <body>
     <br>
     <div class="container">
-        <form action="/qna" method="post">
-            {% if question %}
-                <label style="font-family: sans-serif; font-size: 150%; color: white;">{{ question }}</label>
-            {% else %}
+        <form action="/qna/generic" method="post">
+            {%if question%}
+                <label style="font-family: sans-serif; font-size: 150%; color: white;">{{question}}</label>
+            {%else%}
                 <label style="font-family: sans-serif; font-size: 150%; color: white;">Q. So shell we start?!:</label>
-            {% endif %}
+            {%endif%}
             <br><br>
             <textarea class="textarea" name="answer" placeholder="Type your Answer..." cols="70" rows="20"></textarea>
             <br>
-            <input type="hidden" name="question" value="Hey">
             <input class="button" type="submit" value="Next">
         </form>
     </div>

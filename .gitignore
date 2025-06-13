@@ -1,3 +1,5 @@
-\.idea
-\__pycache__
-\test.ipynb
+.idea/
+chat/
+__pycache__/
+test.ipynb
+fastapienv/

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="html" lang="en">
+<head>
+    <title>Error</title>
+</head>
+
+<body>
+    {%if error %}
+        <label>{{error}}</label>
+        
+    {% elif redirect1 %}
+    <br>
+        <a href="/generic/getinfo">
+            Fill the form
+        </a>
+    {% elif redirect2 %}
+    <br>
+        <a href="/technical/getinfo">
+            Fill the form
+        </a>
+    {% else %}
+        <label>Error</label>
+    {%endif%}
+</body>
+
+</html>

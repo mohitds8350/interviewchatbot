@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Details</title>
     <style>
         .button {
@@ -28,11 +27,15 @@
     <div class="container">
         <p>Please Provide Your Details.</p>
         <br>
-        <form action="/qna" method="post">
+        <form action="/qna/generic" method="post">
             <input type="text" name="name" placeholder="Enter Your Name" required>
             <br><br>
-            <input type="text" name="role" placeholder="Enter Your Job Role" required>
-            <br><br>
+            <p>Job Role</p>
+            <select name="role" required>
+                <option value="Data Scientist">Data Scientist</option>
+                <option value="Data Engineer">Data Engineer</option>
+                <option value="Data Analyst">Data Analyst</option>
+            </select>            
             <p>Years of Experience</p>
             <select name="experience" required>
                 <option value="0-1">Fresher</option>
