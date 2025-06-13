@@ -99,24 +99,26 @@ async def qna(request: Request):
         name = form_data.get("name")
         role = form_data.get("role")
         experience = form_data.get("experience")
-        
-        if not (user_answer, (name, role, experience)):
-            return templates.TemplateResponse(
-            "error.html",
-            {"request": request, "redirect2": "Direct access is not allowed, please fill the form first."}
-            )
                 
-        elif not user_answer:
-            prompt = str({'Name': {name}, 'role': {role}, 'years of experience': {experience}})
+        if not user_answer:
+            if not name:
+                return templates.TemplateResponse(
+                    "error.html",
+                    {"request": request, "redirect2": "Direct access is not allowed, please fill the form first."}
+                    )
+            else:
+                prompt = str({'Name': {name}, 'role': {role}, 'years of experience': {experience}})
+
         else:
             prompt = user_answer
+
         mcq = generatetechnical(prompt)
 
         if isinstance(mcq, str):
             return templates.TemplateResponse(
             "error.html",
             {"request": request, "error": mcq}
-        )
+            )
 
         return templates.TemplateResponse(
                 "technical.html",
@@ -128,7 +130,13 @@ async def qna(request: Request):
             "error.html",
             {"request": request, "error": f"Error (while handling the response): {str(e)}"}
         )
-    
+
+
+@app.get("/test")
+async def test(request: Request, prompt:str):
+    return generatetechnical(prompt)
+
+
 def generatetechnical(prompt: str):
     with open("prompt/system_prompt_mcq.txt", mode='r', encoding="utf-8", errors="ignore") as f:
         system_prompt = f.read()
@@ -143,8 +151,17 @@ def generatetechnical(prompt: str):
         )    
         content = response['message']['content']
         start_idx = content.find("</think>") + len("</think>")
-        a = ''.join(content[start_idx:].split('\n'))
-        final = json.loads(a)
+        required_content = content[start_idx:].strip()
+
+        start_idx = required_content.find("<response>") + len("<response>")
+        end_idx = required_content.find("</response>")
+        required_content = required_content[start_idx:end_idx]
+
+
+        # a = ''.join(content[start_idx:].split('\n'))
+        # a = ''.join(a[start_idx:].split("\\"))
+        
+        final = json.loads(required_content)
         return final
 
     except Exception as e:
